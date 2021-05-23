@@ -26,6 +26,14 @@ class ViewController: UIViewController {
         imageView.layer.cornerRadius = 3
         return imageView
     }()
+    
+    private let grayRectImageView: UIImageView = {
+        let imageView: UIImageView = UIImageView()
+        imageView.backgroundColor = .systemGray
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 3
+        return imageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +44,30 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupImageViewUsedByCGRect()
-        setupImageViewUsedByCGRectCGPointCGSize()
+        setupPinkImageView()
+        setupBlueImageView()
+        setupGrayImageView()
 
     }
     
     private func addSubViews() {
         self.view.addSubview(pinkRectImageView)
         self.view.addSubview(blueRectImageView)
+        self.view.addSubview(grayRectImageView)
     }
     
-    private func setupImageViewUsedByCGRect() {
+    private func setupPinkImageView() {
         
         pinkRectImageView.frame = CGRect(x: (view.width - imageSize) / 2, y: view.safeAreaInsets.top + 10, width: imageSize, height: imageSize)
     }
     
-    private func setupImageViewUsedByCGRectCGPointCGSize() {
+    private func setupBlueImageView() {
         blueRectImageView.frame = CGRect(origin: CGPoint(x: (view.width - imageSize) / 2, y: pinkRectImageView.bottom + 10), size: CGSize(width: imageSize, height: imageSize))
     }
+    
+    private func setupGrayImageView() {
+        grayRectImageView.frame = CGRect(x: (view.width - imageSize) / 2, y: blueRectImageView.bottom + 10, width: imageSize, height: imageSize)
+    }
+
 }
 
